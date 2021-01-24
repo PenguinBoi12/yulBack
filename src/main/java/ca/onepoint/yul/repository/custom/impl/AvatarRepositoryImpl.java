@@ -50,7 +50,6 @@ public class AvatarRepositoryImpl implements AvatarRepositoryCustom {
     @Transactional
     @Override
     public void createAvatar(Avatar avatar) {
-        System.out.println("HERE " + avatar.getName());
         entityManager.createNativeQuery("INSERT INTO avatar (name, type, image, waiting, main, x, y) VALUES (?,?,?,?,?,?,?)")
                 .setParameter(1, avatar.getName())
                 .setParameter(2, avatar.getType())
@@ -59,6 +58,21 @@ public class AvatarRepositoryImpl implements AvatarRepositoryCustom {
                 .setParameter(5, avatar.getMain())
                 .setParameter(6, avatar.getX())
                 .setParameter(7, avatar.getY())
+                .executeUpdate();
+    }
+
+    @Transactional
+    @Override
+    public void updateAvatar(AvatarDto avatarDto) {
+        entityManager.createNativeQuery("UPDATE avatar SET name = :name, type = :type, image = :image, waiting = :waiting, main = :main, x = :x, y = :y WHERE id = :id")
+                .setParameter("name", avatarDto.getName())
+                .setParameter("type", avatarDto.getType())
+                .setParameter("image", avatarDto.getImage())
+                .setParameter("waiting", avatarDto.getWaiting())
+                .setParameter("main", avatarDto.getMain())
+                .setParameter("x", avatarDto.getX())
+                .setParameter("y", avatarDto.getY())
+                .setParameter("id", avatarDto.getId())
                 .executeUpdate();
     }
 

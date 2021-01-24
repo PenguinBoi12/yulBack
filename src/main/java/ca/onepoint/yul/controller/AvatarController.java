@@ -61,6 +61,9 @@ public class AvatarController {
     @CrossOrigin
     @PostMapping("/move-avatars")
     public void moveAvatars(@RequestBody List<AvatarDto> listAvatar) {
+        for (AvatarDto avatarDto : listAvatar){
+            iAvatarService.updateAvatar(avatarDto);
+        }
         messagingTemplate.convertAndSend("/topic/progress", listAvatar);
     }
 

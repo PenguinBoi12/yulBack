@@ -14,4 +14,6 @@ public interface AvatarRepositoryCustom {
     List<Avatar> findByType(Integer id);
 
     void createAvatar(Avatar avatar);
+
+    void updateAvatar(AvatarDto avatarDto);
 }

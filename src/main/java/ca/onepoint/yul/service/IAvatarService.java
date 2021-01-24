@@ -14,4 +14,6 @@ public interface IAvatarService {
     List<AvatarDto> getAvatarsByType(Integer type);
 
     void createAvatar(Avatar avatar);
+
+    void updateAvatar(AvatarDto avatarDto);
 }

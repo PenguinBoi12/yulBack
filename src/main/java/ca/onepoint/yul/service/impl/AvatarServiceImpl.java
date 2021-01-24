@@ -38,6 +38,9 @@ public class AvatarServiceImpl implements IAvatarService {
         avatarRepository.createAvatar(avatar);
     }
 
+    @Override
+    public void updateAvatar(AvatarDto avatarDto) { avatarRepository.updateAvatar(avatarDto); }
+
     private List<AvatarDto> mapAvatarToDto(List<Avatar> avatarIterable) {
         List<AvatarDto> avatarDtoList = new ArrayList<>();
         for (Avatar avatar : avatarIterable) {
