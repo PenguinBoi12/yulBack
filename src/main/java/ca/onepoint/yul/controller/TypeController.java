@@ -14,6 +14,7 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/type")
@@ -26,10 +27,18 @@ public class TypeController {
     private SimpMessageSendingOperations messagingTemplate;
 
     @CrossOrigin
-    @PostMapping("/type/")
+    @GetMapping("/")
+    public List<Type> findAllTypess() {
+        return iTypeService.getAllTypes();
+    }
+
+    @CrossOrigin
+    @PostMapping("/")
     public void createType(@RequestBody Type type) {
         iTypeService.createType(type);
     }
+
+
 
 
 

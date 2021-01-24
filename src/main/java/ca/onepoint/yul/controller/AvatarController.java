@@ -1,7 +1,6 @@
 package ca.onepoint.yul.controller;
 
 import ca.onepoint.yul.dto.AvatarDto;
-import ca.onepoint.yul.entity.Type;
 import ca.onepoint.yul.service.IAvatarService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -48,9 +47,9 @@ public class AvatarController {
     }
 
     @CrossOrigin
-    @GetMapping("/type/{type_id}")
-    public List<AvatarDto> findAvatarsByType(@PathVariable Integer type) {
-        return iAvatarService.getAvatarsByType(type);
+    @GetMapping("/type/{id}")
+    public List<AvatarDto> findAvatarsByType(@PathVariable Integer id) {
+        return iAvatarService.getAvatarsByType(id);
     }
 
     @CrossOrigin

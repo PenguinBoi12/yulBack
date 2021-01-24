@@ -8,6 +8,7 @@ import ca.onepoint.yul.service.ITypeService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service(value = "TypeService")
 public class TypeServiceImpl implements ITypeService {
@@ -18,5 +19,10 @@ public class TypeServiceImpl implements ITypeService {
     @Override
     public void createType(Type type) {
         typeRepository.createType(type);
+    }
+
+    @Override
+    public List<Type> getAllTypes() {
+        return typeRepository.getAllTypes();
     }
 }
