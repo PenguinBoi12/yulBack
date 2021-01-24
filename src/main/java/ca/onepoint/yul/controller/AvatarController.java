@@ -1,6 +1,7 @@
 package ca.onepoint.yul.controller;
 
 import ca.onepoint.yul.dto.AvatarDto;
+import ca.onepoint.yul.entity.Avatar;
 import ca.onepoint.yul.service.IAvatarService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,7 +11,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -47,6 +47,12 @@ public class AvatarController {
     }
 
     @CrossOrigin
+    @PostMapping("/")
+    public void createAvatar(@RequestBody Avatar avatar) {
+        iAvatarService.createAvatar(avatar);
+    }
+
+    @CrossOrigin
     @GetMapping("/type/{id}")
     public List<AvatarDto> findAvatarsByType(@PathVariable Integer id) {
         return iAvatarService.getAvatarsByType(id);
@@ -57,6 +63,5 @@ public class AvatarController {
     public void moveAvatars(@RequestBody List<AvatarDto> listAvatar) {
         messagingTemplate.convertAndSend("/topic/progress", listAvatar);
     }
-
 
 }

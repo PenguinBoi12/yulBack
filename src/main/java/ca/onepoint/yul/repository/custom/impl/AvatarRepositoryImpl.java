@@ -3,6 +3,7 @@ package ca.onepoint.yul.repository.custom.impl;
 import ca.onepoint.yul.dto.AvatarDto;
 import ca.onepoint.yul.entity.Avatar;
 import ca.onepoint.yul.repository.custom.AvatarRepositoryCustom;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -44,6 +45,21 @@ public class AvatarRepositoryImpl implements AvatarRepositoryCustom {
 
         Query query = entityManager.createNativeQuery(queryBuilder.toString(), Avatar.class);
         return query.getResultList();
+    }
+
+    @Transactional
+    @Override
+    public void createAvatar(Avatar avatar) {
+        System.out.println("HERE " + avatar.getName());
+        entityManager.createNativeQuery("INSERT INTO avatar (name, type, image, waiting, main, x, y) VALUES (?,?,?,?,?,?,?)")
+                .setParameter(1, avatar.getName())
+                .setParameter(2, avatar.getType())
+                .setParameter(3, avatar.getImage())
+                .setParameter(4, avatar.getWaiting())
+                .setParameter(5, avatar.getMain())
+                .setParameter(6, avatar.getX())
+                .setParameter(7, avatar.getY())
+                .executeUpdate();
     }
 
     private AvatarDto mappingAvatartoDto(List<Object[]> infos) {

@@ -18,10 +18,6 @@ public class TypeRepositoryImpl implements TypeRepositoryCustom {
     @Transactional
     @Override
     public void createType(Type type) {
-
-        System.out.println(type.getName());
-
-
         entityManager.createNativeQuery("INSERT INTO type (name) VALUES (?)")
                 .setParameter(1, type.getName())
                 .executeUpdate();

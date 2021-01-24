@@ -33,6 +33,11 @@ public class AvatarServiceImpl implements IAvatarService {
         return mapAvatarToDto(avatarRepository.findByType(type));
     }
 
+    @Override
+    public void createAvatar(Avatar avatar) {
+        avatarRepository.createAvatar(avatar);
+    }
+
     private List<AvatarDto> mapAvatarToDto(List<Avatar> avatarIterable) {
         List<AvatarDto> avatarDtoList = new ArrayList<>();
         for (Avatar avatar : avatarIterable) {
